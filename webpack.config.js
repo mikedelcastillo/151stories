@@ -98,7 +98,7 @@ module.exports = {
     new CopyWebpackPlugin([{ from: 'public', to: '../build' }]),
 
     new ImageminPlugin({
-      disable: process.env.NODE_ENV !== 'production',
+      // disable: process.env.NODE_ENV !== 'production',
       plugins: [
         require('imagemin-jpegtran')(),
         require('imagemin-jpeg-recompress')(),
@@ -107,7 +107,7 @@ module.exports = {
         }),
         require('imagemin-pngquant')(),
       ],
-      test: /\.(jpe?g|png|gif|svg)$/i,
+      test: /\.(jpe*g|png|gif|svg)$/img,
     }),
 
     new HtmlWebpackPlugin({
