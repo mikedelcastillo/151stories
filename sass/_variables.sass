@@ -1,0 +1,42 @@
+$font-sans-serif: 'Chivo', 'Roboto', sans-serif
+$font-serif: 'PT Serif', 'Roboto', sans-serif
+$font-size: 16px
+
+$image-ratio: 1.4142135624
+
+$color-white-10: white
+$color-white-8: rgba(255, 255, 255, 0.8)
+$color-white-6: rgba(255, 255, 255, 0.6)
+$color-white-5: rgba(255, 255, 255, 0.5)
+$color-white-4: rgba(255, 255, 255, 0.4)
+
+$color-background: #111
+$color-text: #fff
+
+$break-mobile: 550px
+
+$color-highlight: #FFD500
+$color-deep: #141414
+$color-deep-light: #323232
+
+$border-radius: 5px
+$border-light: 1px solid rgba(255, 255, 255, 0.05)
+
+$margin-percent: 7%
+$margin-static: 20px
+
+$letter-spacing-high: 0.5em
+$letter-spacing-mid: 0.2em
+
+@mixin range($from, $to: -1)
+  @if ($to == -1)
+    @media screen and (min-width: #{$from})
+      @content
+  @else
+    @media screen and (min-width: #{$from}) and (max-width: #{$to})
+      @content
+
+@mixin relative-font-size
+  font-size: $font-relative
+  +range(0, $break-1)
+    font-size: $font-relative-large

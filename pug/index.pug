@@ -1,0 +1,50 @@
+block config
+  - 
+    var RAND = Math.floor(Math.random() * 9999999999999);
+    var QRAND = "?v=" + RAND;
+    
+    var title = "Website Title";
+    
+    var js = [
+      //- "js/main.js",
+    ];
+    var css = [
+      "css/main.css"
+    ];
+    var themeColor = "#000000";
+    var iconLink = "/img/icon.png";
+    var faviconLink = "/img/icon.png";
+    var description = "text";
+    var image = "http://";
+    
+doctype html
+html(lang="en")
+  head
+    title #{title}
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    meta(charset="utf-8")
+      
+    meta(name="msapplication-tap-highlight" content="no")
+      
+    meta(name="theme-color" content=themeColor)
+    meta(name="apple-mobile-web-app-status-bar-style" content=themeColor)
+    meta(name="mobile-web-app-status-bar-style" content=themeColor)
+      
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="mobile-web-app-capable" content="yes")
+    
+    link(rel="apple-touch-icon" sizes="192x192" href=iconLink)
+    link(rel="shortcut icon" href=faviconLink type="image/x-icon")
+    link(rel="icon" href=faviconLink type="image/x-icon")
+      
+    meta(property="og:title" content=title)
+    meta(property="og:site_name" content=title)
+    meta(property="og:description" content=description)
+    meta(property="og:image" content=image)
+  
+    each file in css
+      link(href=file + QRAND rel="stylesheet" type="text/css")
+  body
+    #app
+    each file in js
+      script(src=file + QRAND)
