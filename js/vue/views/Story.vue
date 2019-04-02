@@ -48,9 +48,12 @@ export default {
       return this.story.content[this.index];
     },
     styles(){
-      return {
+      return this.page ? {
         '--background-color': this.page.backgroundColor,
         '--text-color': this.page.textColor,
+      } : {
+        '--background-color': '#000',
+        '--text-color': '#000',
       };
     },
   },
