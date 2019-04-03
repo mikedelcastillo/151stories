@@ -9,7 +9,7 @@ module.exports = [
 
   {
     name: "story",
-    path: "/story/:id",
+    path: "/story/:id/:page?",
     component: require('@/vue/views/Story.vue').default,
   },
 ];

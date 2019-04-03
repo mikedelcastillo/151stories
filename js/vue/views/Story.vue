@@ -5,7 +5,7 @@
         .title {{story.title}}
         router-link.close(:to=`{name:"index"}`)
           include ../../../public/img/close.svg
-    .center-wrapper.content
+    .center-wrapper.content(@click=`next`)
       transition(name="fade" mode="out-in")
         .image(:key=`index` v-if=`page.type=="image"` :style=`{backgroundImage:"url("+page.img+")"}`)
         .text-only(:key=`index` v-if=`page.type=="text"`)
@@ -28,7 +28,7 @@
 export default {
   data(){
     return {
-      index: 0,
+
     };
   },
   mounted(){
@@ -38,6 +38,9 @@ export default {
     window.removeEventListener("keydown", this.keyHandler);
   },
   computed: {
+    index(){
+      return Math.max(0, Math.min(this.story.content.length - 1, this.$route.params.page || 0));
+    },
     stories(){
       return this.$store.state.stories;
     },
@@ -65,10 +68,16 @@ export default {
     },
 
     prev(){
-      this.index = Math.max(0, this.index - 1);
+      let index = Math.max(0, this.index - 1);
+      let route = Object.assign({}, this.$route);
+      route.params.page = index;
+      this.$router.push(route);
     },
     next(){
-      this.index = Math.min(this.story.content.length - 1, this.index + 1);
+      let index = Math.min(this.story.content.length - 1, this.index + 1);
+      let route = Object.assign({}, this.$route);
+      route.params.page = index;
+      this.$router.push(route);
     },
 
     keyHandler({keyCode}){
@@ -142,8 +151,10 @@ export default {
         background-repeat: no-repeat
         background-size: contain
       .text-only
+        text-align: center
         margin: auto
         width: 90%
+        max-width: 400px
         height: 100%
         display: flex
         justify-content: center
